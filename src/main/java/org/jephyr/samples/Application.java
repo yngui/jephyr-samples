@@ -23,25 +23,25 @@ public class Application {
     }
 
     public static void main(String[] args) throws Exception {
-//        ContinuationImpl.setUnsuspendableErrorListener(unsuspendableError -> {
-//            StringBuilder sb = new StringBuilder();
-//            ExtendedStackTrace stackTrace = ExtendedStackTrace.here();
-//            for (ExtendedStackTraceElement stackTraceElement : stackTrace) {
-//                Member member = stackTraceElement.getMethod();
-//                String descriptor;
-//                if (member instanceof Constructor) {
-//                    descriptor = getDescriptor((Constructor) member);
-//                } else {
-//                    descriptor = getDescriptor((Method) member);
-//                }
-//                sb.append('\\').append('\n').append('|').append('^')
-//                        .append(stackTraceElement.getClassName().replace('.', '/').replace("$", "\\\\$"))
-//                        .append("\\\\.").append(stackTraceElement.getMethodName().replace("$", "\\\\$"))
-//                        .append(descriptor.replace("(", "\\\\(").replace(")", "\\\\)").replace("$", "\\\\$")
-//                                .replace("[", "\\\\[")).append('$');
-//            }
-//            System.err.println(sb);
-//        });
+        ContinuationImpl.setUnsuspendableErrorListener(unsuspendableError -> {
+            StringBuilder sb = new StringBuilder();
+            ExtendedStackTrace stackTrace = ExtendedStackTrace.here();
+            for (ExtendedStackTraceElement stackTraceElement : stackTrace) {
+                Member member = stackTraceElement.getMethod();
+                String descriptor;
+                if (member instanceof Constructor) {
+                    descriptor = getDescriptor((Constructor) member);
+                } else {
+                    descriptor = getDescriptor((Method) member);
+                }
+                sb.append('\\').append('\n').append('|').append('^')
+                        .append(stackTraceElement.getClassName().replace('.', '/').replace("$", "\\\\$"))
+                        .append("\\\\.").append(stackTraceElement.getMethodName().replace("$", "\\\\$"))
+                        .append(descriptor.replace("(", "\\\\(").replace(")", "\\\\)").replace("$", "\\\\$")
+                                .replace("[", "\\\\[")).append('$');
+            }
+            System.err.println(sb);
+        });
         SpringApplication.run(Application.class, args);
     }
 
